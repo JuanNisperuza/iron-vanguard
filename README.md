@@ -26,7 +26,6 @@ Si tu navegador bloquea algo con `file://`, sirve la carpeta: `npx serve .` o `p
 - Jefe final ARACNE-9: caminante de 4 patas con IK y pasos procedurales; cañón de plasma, misiles teledirigidos (se pueden derribar), pisotón con ondas de choque (salta) y rayo láser bajo/alto (salta o agáchate). A mitad de vida pierde el blindaje.
 
 ## Estructura
-- `src/textures.js` — generación procedural de todas las texturas
 - `src/rig.js` — esqueleto humanoide: ciclo de marcha, IK de 2 huesos, apuntado, acciones y ragdoll Verlet
 - `src/audio.js` — SFX y música sintetizados
 - `src/world.js` — datos del nivel, terreno horneado por trozos, parallax

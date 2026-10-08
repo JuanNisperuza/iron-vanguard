@@ -1,35 +1,57 @@
-# IRON VANGUARD — Misión 1: Operation Sunset
+# Iron Vanguard
 
-Run 'n gun estilo Metal Slug hecho en **Phaser 3**, sin ningún asset externo:
-todo el arte se dibuja con Canvas2D al arrancar, los personajes se animan con
-huesos + IK procedural, y el sonido/música se sintetizan con WebAudio.
+Juego de acción lateral tipo run and gun hecho con Phaser 3. No usa recursos externos: los gráficos se dibujan con Canvas2D al arrancar, los personajes se animan con un esqueleto procedural y el audio se sintetiza con WebAudio.
 
-## Cómo jugar
-Abre `index.html` directamente en el navegador (Chrome/Edge/Firefox). No necesita servidor.
-Si tu navegador bloquea algo con `file://`, sirve la carpeta: `npx serve .` o `python -m http.server`.
+## Ejecutar
+
+Abrir `index.html` en el navegador. Si el navegador bloquea algo al abrirlo como archivo, servir la carpeta:
+
+```
+npx serve .
+```
+
+o
+
+```
+python -m http.server
+```
+
+## Controles
 
 | Acción | Teclado | Gamepad |
-|---|---|---|
-| Mover | ← → / A D | Stick / D-pad |
-| Apuntar arriba | ↑ / W | Arriba |
-| Agacharse / apuntar abajo en el aire | ↓ / S | Abajo |
-| Disparar (cuchillo si el enemigo está pegado) | J / Z | X / RB |
-| Saltar (↓ + saltar baja de plataformas) | K / X / Espacio | A |
-| Granada | L / C | B / Y |
-| Sonido / Pausa | M / P o Esc | — |
+| --- | --- | --- |
+| Mover | Flechas o A D | Stick o cruceta |
+| Apuntar arriba | Arriba o W | Arriba |
+| Agacharse, apuntar abajo en el aire | Abajo o S | Abajo |
+| Disparar (cuchillo si el enemigo está pegado) | J o Z | X o RB |
+| Saltar (Abajo + saltar baja de plataformas) | K, X o Espacio | A |
+| Granada | L o C | B o Y |
+| Sonido | M | |
+| Pausa | P o Esc | |
 
-## Contenido del nivel
-- Soldados con IA (fusileros, granaderos, cuchilleros, paracaidistas): reaccionan con "!", a veces entran en pánico y huyen gritando.
-- 3 prisioneros que dan Heavy Machine Gun / bombas; cajas con escopeta, medallas y comida; barriles explosivos en cadena.
-- Mini-jefe tanque R-07 (orugas con eslabones animados, torreta que apunta, ametralladora baja → agáchate).
-- Helicóptero H-3 (dispara ráfagas y suelta bombas).
-- Jefe final ARACNE-9: caminante de 4 patas con IK y pasos procedurales; cañón de plasma, misiles teledirigidos (se pueden derribar), pisotón con ondas de choque (salta) y rayo láser bajo/alto (salta o agáchate). A mitad de vida pierde el blindaje.
+El juego se pausa solo al perder el foco de la ventana. La puntuación máxima se guarda en el navegador.
+
+## Nivel
+
+- Soldados con comportamiento propio: fusileros, granaderos, cuchilleros y paracaidistas.
+- Tres prisioneros que entregan armas o bombas, cajas con objetos y barriles explosivos.
+- Tanque R-07 a mitad del nivel.
+- Helicóptero H-3 antes del tramo final.
+- Jefe final ARACNE-9, un caminante de cuatro patas con varios ataques y una segunda fase.
 
 ## Estructura
-- `src/rig.js` — esqueleto humanoide: ciclo de marcha, IK de 2 huesos, apuntado, acciones y ragdoll Verlet
-- `src/audio.js` — SFX y música sintetizados
-- `src/world.js` — datos del nivel, terreno horneado por trozos, parallax
-- `src/entities.js` — jugador, soldados, cajas, barriles, prisioneros, pickups
-- `src/bosses.js` — tanque, helicóptero, caminante
-- `src/game.js` — escena principal (cámara que solo avanza, bloqueos de jefe, proyectiles)
-- `src/scenes.js` — título, HUD, continuar, misión cumplida
+
+| Archivo | Contenido |
+| --- | --- |
+| `src/main.js` | Configuración de Phaser y arranque |
+| `src/scenes.js` | Carga, título y HUD |
+| `src/game.js` | Escena principal, entrada, cámara y proyectiles |
+| `src/world.js` | Datos del nivel, terreno y fondos |
+| `src/entities.js` | Jugador, soldados, cajas, barriles, prisioneros y objetos |
+| `src/bosses.js` | Tanque, helicóptero, misiles y jefe final |
+| `src/rig.js` | Esqueleto humanoide, cinemática inversa y ragdoll |
+| `src/fx.js` | Partículas, escombros y textos flotantes |
+| `src/audio.js` | Efectos y música sintetizados |
+| `src/textures.js` | Generación de todas las texturas |
+
+El formato del código sigue la configuración de `.prettierrc`.
